@@ -30,4 +30,8 @@ class DataStore
     @clients = []
     @clients_index_by_email = {}
   end
+
+  def size
+    @clients.size
+  end
 end
