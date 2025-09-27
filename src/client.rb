@@ -1,6 +1,8 @@
 class Client < Struct.new(:id, :full_name, :email)
-  def initialize(*attributes)
-    super
+  def initialize(id, full_name, email)
+    email = email&.strip&.downcase
+    super(id, full_name, email)
+
     validate!
   end
 

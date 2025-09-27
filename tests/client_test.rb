@@ -8,15 +8,15 @@ class ClientTest < Test::Unit::TestCase
     end
   end
 
-  def test_nil_attributes
-    assert_raise_with_message(ArgumentError, /is invalid/) do
-      Client.new
+  def test_nil_id
+    assert_raise_with_message(ArgumentError, "id is invalid") do
+      Client.new(nil, "Smith", "smith@g.com")
     end
   end
 
   def test_nil_email
     assert_raise_with_message(ArgumentError, "email is invalid") do
-      Client.new(11, "Smith")
+      Client.new(11, "Smith", nil)
     end
   end
 

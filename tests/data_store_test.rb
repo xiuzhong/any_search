@@ -17,9 +17,10 @@ class DataStoreTest < Test::Unit::TestCase
     DataStore.instance.clear
     @john = Client.new(1, "John Doe", "john.doe@gmail.com")
     @another_john = Client.new(2, "Another John Doe", "john.doe@gmail.com")
-    @jane = Client.new(3, "Jane Smith", "jane.smith@yahoo.com")
+    @captial_john = Client.new(3, "Captial Doe", "John.Doe@gmail.com")
+    @jane = Client.new(4, "Jane Smith", "jane.smith@yahoo.com")
 
-    [@john, @another_john, @jane].each do |client|
+    [@john, @another_john, @captial_john, @jane].each do |client|
       DataStore.instance.store client
     end
   end
@@ -48,11 +49,13 @@ class DataStoreTest < Test::Unit::TestCase
     assert_equal([@john, @another_john], DataStore.instance.search_by_partial_name("John"))
   end
 
-  def test_find_duplicate_emails
-    duplicates =
+  def test_search_by_partial_name_is_case_sensitive
+    assert_equal([], DataStore.instance.search_by_partial_name("john"))
+  end
 
+  def test_find_duplicate_emails_case_insensitive
     assert_equal(
-      { "john.doe@gmail.com" => [@john, @another_john] },
+      { "john.doe@gmail.com" => [@john, @another_john, @captial_john] },
       DataStore.instance.find_duplicate_emails
     )
   end

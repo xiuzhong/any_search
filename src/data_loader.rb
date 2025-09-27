@@ -11,7 +11,7 @@ class DataLoader
         client = Client.new(
           client_data["id"],
           client_data["full_name"],
-          client_data["email"]&.strip&.downcase
+          client_data["email"]
         )
 
         DataStore.instance.store(client)
