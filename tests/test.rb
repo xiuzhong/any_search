@@ -1,3 +1,5 @@
 require "test/unit"
 require_relative "client_test"
 require_relative "data_store_test"
+require_relative "search_service_test"
+require_relative "find_duplicate_service_test"
